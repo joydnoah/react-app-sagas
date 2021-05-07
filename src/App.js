@@ -1,17 +1,30 @@
 import React from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import store from './app/store';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux'
 
 function App() {
+  const dispatch = useDispatch()
+  const test = useSelector(state => {
+    console.log(state)
+    return state
+  })
+  const handleClick = () => {
+    console.log("TEST REQUEST")
+    dispatch({
+      type: 'TEST_REQUEST',
+      data: { test: 'a'}
+    })
+  }
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        <button onClick={handleClick}>TEST</button>
         <span>
           <span>Learn </span>
           <a
